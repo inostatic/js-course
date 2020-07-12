@@ -16,7 +16,9 @@
     "operator-linebreak": "off",
     "no-unused-vars": "off",
     "no-trailing-spaces": "off",
-    "quotes": "off"
+    "quotes": "off",
+    "linebreak-style": "off",
+    "padded-blocks": "off"
   },
   "extends": [
     "eslint:recommended",
