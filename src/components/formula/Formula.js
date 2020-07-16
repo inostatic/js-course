@@ -1,5 +1,4 @@
 import {ExcelComponent} from '@core/ExcelComponent'
-import {TableSelection} from "@/components/table/TableSelection";
 import {$} from "@core/dom";
 
 export class Formula extends ExcelComponent {
@@ -26,12 +25,16 @@ export class Formula extends ExcelComponent {
 	init() {
 		super.init();
 		this.$formula = this.$root.find('#formula')
-		const eventsNames = ['table:select', 'table:input', 'table:mousedown']
+		const eventsNames = ['table:select']
 
 		eventsNames.forEach(event => {
 			this.$on(event, $cell => {
 				this.$formula.text($cell.text())
 			})
+		})
+		this.$subscribe(state => {
+			console.log('formula update', state.currentText)
+			this.$formula.text(state.currentText)
 		})
 	}
 
