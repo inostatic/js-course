@@ -8,8 +8,14 @@ export class Formula extends ExcelComponent {
 		super($root, {
 			name: 'Formula',
 			listeners: ['input', 'keydown'],
+			subscribe: ['currentText'],
 			...options
 		})
+	}
+
+	storeChanged({currentText}) {
+	// после ввода в ячейку срабатывает на ресайз
+		this.$formula.text(currentText)
 	}
 
 	toHTML() {
@@ -32,10 +38,7 @@ export class Formula extends ExcelComponent {
 				this.$formula.text($cell.text())
 			})
 		})
-		this.$subscribe(state => {
-			console.log('formula update', state.currentText)
-			this.$formula.text(state.currentText)
-		})
+
 	}
 
 	onInput(event) {
