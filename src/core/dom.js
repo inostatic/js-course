@@ -57,6 +57,13 @@ class Dom {
         return $(this.$el.closest(selector))
     }
 
+    getStyles(styles = []) {
+        return styles.reduce((res, s) => {
+            res[s] = this.$el.style[s]
+            return res
+        }, {})
+    }
+
     getCoords() {
         return this.$el.getBoundingClientRect()
     }
