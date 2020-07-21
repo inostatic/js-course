@@ -46,7 +46,7 @@ export function createToolbar(s) {
         {
             icon: 'format_italic',
             value: {
-                fontStyle: s['fontStyle'] === 'italic' ? 'none' : 'italic'
+                fontStyle: s['fontStyle'] === 'italic' ? 'normal' : 'italic'
             },
             active: s['fontStyle'] === 'italic'
         },
