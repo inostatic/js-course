@@ -32,13 +32,9 @@ export class Formula extends ExcelComponent {
 		super.init();
 		this.$formula = this.$root.find('#formula')
 		const eventsNames = ['table:select']
-
-		eventsNames.forEach(event => {
-			this.$on(event, $cell => {
-				this.$formula.text($cell.text())
-			})
+		this.$on('table:select', $cell => {
+			this.$formula.text($cell.data.value)
 		})
-
 	}
 
 	onInput(event) {
