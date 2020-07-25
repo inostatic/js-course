@@ -29,16 +29,17 @@ export class Formula extends ExcelComponent {
 	}
 
 	init() {
-		super.init();
+		super.init()
 		this.$formula = this.$root.find('#formula')
-		const eventsNames = ['table:select']
+
 		this.$on('table:select', $cell => {
 			this.$formula.text($cell.data.value)
 		})
 	}
 
 	onInput(event) {
-		this.$emit('formula:input', $(event.target).text())
+		const text = $(event.target).text()
+		this.$emit('formula:input', text)
 	}
 
 	onKeydown(event) {

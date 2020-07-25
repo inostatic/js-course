@@ -25,7 +25,7 @@ export class Table extends ExcelComponent {
     }
 
     toHTML() {
-        return createTable(30, this.$getState())
+        return createTable(10, this.$getState())
     }
 
     prepare() {
@@ -40,7 +40,6 @@ export class Table extends ExcelComponent {
             this.selection.current
                 .attr('data-value', value)
                 .text(parse(value))
-            this.selection.current.text(value)
             this.updateTextInStore(value)
         })
         this.$on('formula:done', () => {
