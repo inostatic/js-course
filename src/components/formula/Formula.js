@@ -1,5 +1,4 @@
 import {ExcelComponent} from '@core/ExcelComponent'
-import {TableSelection} from "@/components/table/TableSelection";
 import {$} from "@core/dom";
 
 export class Formula extends ExcelComponent {
@@ -9,8 +8,14 @@ export class Formula extends ExcelComponent {
 		super($root, {
 			name: 'Formula',
 			listeners: ['input', 'keydown'],
+			subscribe: ['currentText'],
 			...options
 		})
+	}
+
+	storeChanged({currentText}) {
+	// после ввода в ячейку срабатывает на ресайз
+		this.$formula.text(currentText)
 	}
 
 	toHTML() {
@@ -24,19 +29,17 @@ export class Formula extends ExcelComponent {
 	}
 
 	init() {
-		super.init();
+		super.init()
 		this.$formula = this.$root.find('#formula')
-		const eventsNames = ['table:select', 'table:input', 'table:mousedown']
 
-		eventsNames.forEach(event => {
-			this.$on(event, $cell => {
-				this.$formula.text($cell.text())
-			})
+		this.$on('table:select', $cell => {
+			this.$formula.text($cell.data.value)
 		})
 	}
 
 	onInput(event) {
-		this.$emit('formula:input', $(event.target).text())
+		const text = $(event.target).text()
+		this.$emit('formula:input', text)
 	}
 
 	onKeydown(event) {
