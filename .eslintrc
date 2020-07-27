@@ -3,7 +3,9 @@
   "env": {
     "es6": true,
     "browser": true,
-    "node": true
+    "node": true,
+    "jest/globals": true,
+    "jest": true
   },
   "rules": {
     "semi": "off",
@@ -20,6 +22,7 @@
     "linebreak-style": "off",
     "padded-blocks": "off"
   },
+  "plugins": ["jest"],
   "extends": [
     "eslint:recommended",
     "google"

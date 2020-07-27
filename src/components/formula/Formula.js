@@ -13,11 +13,6 @@ export class Formula extends ExcelComponent {
 		})
 	}
 
-	storeChanged({currentText}) {
-	// после ввода в ячейку срабатывает на ресайз
-		this.$formula.text(currentText)
-	}
-
 	toHTML() {
 		return `<div class="info">fx</div>
             <div 
@@ -33,8 +28,15 @@ export class Formula extends ExcelComponent {
 		this.$formula = this.$root.find('#formula')
 
 		this.$on('table:select', $cell => {
-			this.$formula.text($cell.data.value)
+			// const text = $cell.data.value
+			const text = 'test'
+			this.$formula.text(text)
 		})
+	}
+
+	storeChanged({currentText}) {
+	// после ввода в ячейку срабатывает на ресайз
+		this.$formula.text(currentText)
 	}
 
 	onInput(event) {
